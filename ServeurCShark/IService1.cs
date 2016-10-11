@@ -13,18 +13,59 @@ namespace ServeurCShark
     public interface IService1
     {
 
-        [OperationContract]
+        /*[OperationContract]
         string GetData(int value);
 
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);
 
         // TODO: ajoutez vos opérations de service ici
+        */
+
+        [OperationContract]
+        LogRes auth(string username);
+
+        [OperationContract]
+
+        bool startSession(string username);
+
+        [OperationContract]
+        bool send(string message);
+
+        [OperationContract]
+        bool endSession();
+
+        [OperationContract]
+        void logout();  
+
     }
 
 
-    // Utilisez un contrat de données comme indiqué dans l'exemple ci-après pour ajouter les types composites aux opérations de service.
     [DataContract]
+    public class LogRes
+    {
+        bool connectRes = false;
+        List<string> userList=new List<string>();
+
+        [DataMember]
+        public bool ConnectRes
+        {
+            get { return connectRes; }
+            set { connectRes = value; }
+        }
+
+        [DataMember]
+        public List<string> UserList
+        {
+            get { return userList; }
+        }
+
+    }
+
+
+
+    // Utilisez un contrat de données comme indiqué dans l'exemple ci-après pour ajouter les types composites aux opérations de service.
+    /*[DataContract]
     public class CompositeType
     {
         bool boolValue = true;
@@ -44,4 +85,5 @@ namespace ServeurCShark
             set { stringValue = value; }
         }
     }
+    */
 }
