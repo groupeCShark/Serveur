@@ -23,29 +23,33 @@ namespace ServeurCShark
         */
 
         [OperationContract]
-        LogRes auth(string username);
+        LogResult Auth(string username);
 
         [OperationContract]
 
-        bool startSession(string username);
+        bool StartSession(string username);
 
         [OperationContract]
-        bool send(string message);
+        bool Send(string Username, string Message);
 
         [OperationContract]
-        bool endSession();
+        bool EndSession();
 
         [OperationContract]
-        void logout();  
+        void Logout();  
 
     }
 
 
     [DataContract]
-    public class LogRes
+    public class LogResult
     {
         bool connectRes = false;
-        List<string> userList=new List<string>();
+        List<string> _userList;
+
+        public LogResult(List<string> userList) {
+            _userList = userList;
+        }
 
         [DataMember]
         public bool ConnectRes
@@ -57,7 +61,12 @@ namespace ServeurCShark
         [DataMember]
         public List<string> UserList
         {
-            get { return userList; }
+            get {
+                _userList.Add("Appo");
+                _userList.Add("Oliver");
+                _userList.Add("God");
+                return _userList;
+            }
         }
 
     }

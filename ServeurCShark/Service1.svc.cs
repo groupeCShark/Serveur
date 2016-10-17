@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -13,29 +14,32 @@ namespace ServeurCShark
     public class Service1 : IService1
     {
 
+        private List<string> pendingUsers = new List<string>();
 
-
-        public LogRes auth(string username)
+        public LogResult Auth(string Username)
         {
-            return new LogRes();
+            pendingUsers.Add(Username);
+            LogManager.WriteLogMessage("New pending client: " + Username);
+            return new LogResult(pendingUsers);
         }
 
-        public bool startSession(string username)
-        {
-            return false;
-        }
-
-        public bool send(string message)
+        public bool StartSession(string Username)
         {
             return false;
         }
 
-        public bool endSession()
+        public bool Send(string Username, string Message)
+        {
+            LogManager.WriteLogMessage(Username + ": " + Crypto.Decrypt(Message));
+            return true;
+        }
+
+        public bool EndSession()
         {
             return false;
         }
 
-        public void logout()
+        public void Logout()
         {
 
         }
