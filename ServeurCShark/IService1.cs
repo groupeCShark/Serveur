@@ -62,9 +62,6 @@ namespace ServeurCShark
         public List<string> UserList
         {
             get {
-                _userList.Add("Appo");
-                _userList.Add("Oliver");
-                _userList.Add("God");
                 return _userList;
             }
         }

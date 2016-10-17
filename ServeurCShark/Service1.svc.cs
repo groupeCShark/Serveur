@@ -20,6 +20,12 @@ namespace ServeurCShark
         {
             pendingUsers.Add(Username);
             LogManager.WriteLogMessage("New pending client: " + Username);
+            
+            // Add other users for testing
+            pendingUsers.Add("Appo");
+            pendingUsers.Add("Oliver");
+            pendingUsers.Add("God");
+            
             return new LogResult(pendingUsers);
         }
 
