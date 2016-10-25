@@ -26,7 +26,6 @@ namespace ServeurCShark
         LogResult Auth(string username);
 
         [OperationContract]
-
         bool StartSession(string username);
 
         [OperationContract]
